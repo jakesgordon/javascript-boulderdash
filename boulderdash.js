@@ -1,8 +1,10 @@
 Boulderdash = function() {
 
-  //-------------------------------------------------------------------------
-  // base helper methods
-  //-------------------------------------------------------------------------
+  //=========================================================================
+  // GENERAL purpose constants and helper methods
+  //=========================================================================
+
+  var KEY = { ENTER: 13, ESC: 27, SPACE: 32, PAGEUP: 33, PAGEDOWN: 34, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40 };
 
   var Dom = {
     get:     function(id)       { return (id instanceof HTMLElement) ? id : document.getElementById(id); },
@@ -25,7 +27,9 @@ Boulderdash = function() {
                                    }
   }
 
-  //-------------------------------------------------------------------------
+  //=========================================================================
+  // GAME constants and helpers
+  //=========================================================================
 
   var DIR  = { UP: 0, UPRIGHT: 1, RIGHT: 2, DOWNRIGHT: 3, DOWN: 4, DOWNLEFT: 5, LEFT: 6, UPLEFT: 7 };
   var DIRX = [     0,          1,        1,            1,       0,          -1,      -1,        -1 ];
@@ -128,13 +132,15 @@ Boulderdash = function() {
   function isButterfly(o) { return (OBJECT.BUTTERFLY1.code   <= o.code) && (o.code <= OBJECT.BUTTERFLY4.code); }
 
   //----------------------------------------------------------------------------
-  // HELPER classes
-  //----------------------------------------------------------------------------
 
   var Point = function(x, y, dir) {
     this.x = x + (DIRX[dir] || 0);
     this.y = y + (DIRY[dir] || 0);
   }
+
+  //=========================================================================
+  // GAME LOGIC
+  //=========================================================================
 
   var Game = function(options) {
     this.options = options || {};
@@ -514,7 +520,9 @@ Boulderdash = function() {
 
   }
 
-  //-------------------------------------------------------------------------
+  //=========================================================================
+  // GAME RENDERING
+  //=========================================================================
 
   function Render(game) {
     game.subscribe('level', this.onChangeLevel,   this);
@@ -664,12 +672,11 @@ Boulderdash = function() {
 
   }
 
-  //-------------------------------------------------------------------------
-  // game constants and variables
-  //-------------------------------------------------------------------------
+  //=========================================================================
+  // GAME LOOP
+  //=========================================================================
 
-  var KEY    = { ENTER: 13, ESC: 27, SPACE: 32, PAGEUP: 33, PAGEDOWN: 34, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40 },
-      game   = new Game(),       // the boulderdash game logic (rendering independent)
+  var game   = new Game(),       // the boulderdash game logic (rendering independent)
       render = new Render(game), // the boulderdash game renderer
       stats  = new Stats();      // the FPS counter widget
 
