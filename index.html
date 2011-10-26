@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <title>Javascript Boulderdash</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="boulderdash.css" media="screen, print" rel="stylesheet" type="text/css" />
+</head> 
+
+<body> 
+
+  <div id="boulderdash">
+    <div id="header">
+      <img  id='prev' src='images/up.png'   title="previous level">
+      <img  id='next' src='images/down.png' title="next level">
+      <span id="description">Boulderdash</span>
+      <a    id="help" href="help.html">instructions</a>
+    </div>
+    <canvas id="canvas">
+      Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+    </canvas>
+    <div id="keys">Use the <b>arrow</b> keys to control Rockford.</div>
+  </div>
+
+  <script src="stats.js"></script>
+  <script src="caves.js"></script>
+  <script src="boulderdash.js"></script>
+  <script>
+    Boulderdash();
+  </script>
+
+</body> 
+</html>

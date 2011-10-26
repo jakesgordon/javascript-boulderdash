@@ -1,0 +1,24 @@
+body          { font-family: Arial, Helvetica, sans-serif; background-color: #EEE; }
+#boulderdash  { position: relative; margin: 0 auto; }
+#description  { color: #333; font-style: italic; padding-left: 0.5em; }
+#help         { float: right; color: blue; font-size: 12pt; }
+#back         { color: blue; font-size: 10pt; padding-left: 1em; }
+#keys         { color: #333; font-style: italic; font-size: 0.8em; margin-top: 1em; }
+#stats        { position: absolute; top: 0; right: -100px; }
+#canvas       { display: block; margin: 0 auto; box-shadow: 10px 10px 10px #999; border: 2px solid black; }
+
+#header img          { cursor: pointer; width: 1.25em; float: left; }
+#header img.disabled { cursor: default; opacity: 0.5; }
+#header img:active   { opacity: 0.7; }
+
+#instructions           { padding: 1em; font-size: 12pt; width: 40em; }
+#instructions ul li     { padding: 1em 0.5em; list-style-type: none; vertical-align: middle; border-top: 1px solid #CCC; min-height: 2em; }
+#instructions ul li img { width: 32px; height: 32px; float: left; margin-right: 8px; border: 2px solid black; }
+#instructions #keys li  { min-height: 0; border: 0; padding: 0; margin-left: 2em; list-style-type: disc; }
+
+@media screen and (min-width:    0px) and (min-height:   0px) { #boulderdash { font-size: 0.75em; width:  640px; } #canvas { width:  640px; height: 368px; } } /* 16px chunks */
+@media screen and (min-width:  840px) and (min-height: 520px) { #boulderdash { font-size: 1.00em; width:  800px; } #canvas { width:  800px; height: 460px; } } /* 20px chunks */
+@media screen and (min-width: 1000px) and (min-height: 602px) { #boulderdash { font-size: 1.25em; width:  960px; } #canvas { width:  960px; height: 552px; } } /* 24px chunks */
+@media screen and (min-width: 1160px) and (min-height: 694px) { #boulderdash { font-size: 1.50em; width: 1120px; } #canvas { width: 1120px; height: 644px; } } /* 28px chunks */
+@media screen and (min-width: 1320px) and (min-height: 786px) { #boulderdash { font-size: 1.75em; width: 1280px; } #canvas { width: 1280px; height: 736px; } } /* 32px chunks */
+
