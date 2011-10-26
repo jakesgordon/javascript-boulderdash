@@ -153,40 +153,40 @@ Boulderdash = function() {
     reset: function(n) {
       n = Math.min(CAVES.length-1, Math.max(0, (typeof n === 'number' ? n : this.storage.level || 0)));
       this.index    = this.storage.level = n;        // cave index
-      this.master   = CAVES[this.index];             // cave definition
-      this.width    = this.master.width;             // cave cell width
-      this.height   = this.master.height;            // cave cell height
+      this.cave     = CAVES[this.index];             // cave definition
+      this.width    = this.cave.width;               // cave cell width
+      this.height   = this.cave.height;              // cave cell height
       this.cells    = [];                            // will be built up into 2 dimensional array below
       this.frame    = 0;                             // game frame counter starts at zero
       this.fps      = 10;                            // how many game frames per second
       this.step     = 1/this.fps;                    // how long is each game frame (in seconds)
       this.birth    = 2*this.fps;                    // in which frame is rockford born ?
-      this.timer    = this.master.caveTime;          // seconds allowed to complete this cave 
+      this.timer    = this.cave.caveTime;            // seconds allowed to complete this cave 
       this.idle     = { blink: false, tap: false };  // is rockford showing any idle animation ?
       this.flash    = false;                         // trigger white flash when rockford has collected enought diamonds
       this.won      = false;                         // set to true when rockford enters the outbox
       this.diamonds = {
         collected: 0,
-        needed: this.master.diamondsNeeded,
-        value:  this.master.initialDiamondValue,
-        extra:  this.master.extraDiamondValue
+        needed: this.cave.diamondsNeeded,
+        value:  this.cave.initialDiamondValue,
+        extra:  this.cave.extraDiamondValue
       };
       this.amoeba = {
-        max: this.master.amoebaMaxSize,
-        slow: this.master.amoebaSlowGrowthTime/this.step
+        max: this.cave.amoebaMaxSize,
+        slow: this.cave.amoebaSlowGrowthTime/this.step
       };
       this.magic = {
         active: false,
-        time: this.master.magicWallMillingTime/this.step
+        time: this.cave.magicWallMillingTime/this.step
       };
       var x, y, o, pt;
       for(y = 0 ; y < this.height ; ++y) {
         for(x = 0 ; x < this.width ; ++x) {
           this.cells[x]    = this.cells[x] || [];
-          this.cells[x][y] = { p: new Point(x,y), frame: 0, object: OBJECT[this.master.map[x][y]] };
+          this.cells[x][y] = { p: new Point(x,y), frame: 0, object: OBJECT[this.cave.map[x][y]] };
         }
       }
-      this.publish('level', this.master);
+      this.publish('level', this.cave);
     },
 
     prev: function() { if (this.index > 0)              this.reset(this.index-1); },
