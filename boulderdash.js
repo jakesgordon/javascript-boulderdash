@@ -350,10 +350,16 @@ Boulderdash = function() {
         this.explode(p);
       }
       else if (this.isempty(p, dir) || this.isdirt(p, dir)) {
-        this.move(p, dir, OBJECT.ROCKFORD);
+        if(moving.space)
+          this.clear(p, dir);
+        else
+          this.move(p, dir, OBJECT.ROCKFORD);
       }
       else if (this.isdiamond(p, dir)) {
-        this.move(p, dir, OBJECT.ROCKFORD);
+        if(moving.space)
+          this.clear(p, dir);
+        else
+          this.move(p, dir, OBJECT.ROCKFORD);
         this.collectDiamond();
       }
       else if (horizontal(dir) && this.isboulder(p, dir)) {
@@ -742,6 +748,7 @@ Boulderdash = function() {
       case KEY.ESC:        game.reset();        handled = true; break;
       case KEY.PAGEUP:     game.prev();         handled = true; break;
       case KEY.PAGEDOWN:   game.next();         handled = true; break;
+      case KEY.SPACE:      moving.startSpace(); handled = true; break;
     }
     if (handled)
       ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
@@ -753,21 +760,24 @@ Boulderdash = function() {
       case KEY.DOWN:  moving.stopDown();  handled = true; break;
       case KEY.LEFT:  moving.stopLeft();  handled = true; break;
       case KEY.RIGHT: moving.stopRight(); handled = true; break;
+      case KEY.SPACE: moving.stopSpace(); handled = true; break;
     }
   }
 
   var moving = {
     dir:      DIR.NONE,
     lastXDir: DIR.NONE,
-    up: false, down: false, left: false, right: false,
+    up: false, down: false, left: false, right: false, space: false,
     startUp:    function() { this.up    = true; this.dir = DIR.UP;   },
     startDown:  function() { this.down  = true; this.dir = DIR.DOWN; },
     startLeft:  function() { this.left  = true; this.dir = DIR.LEFT;  this.lastXDir = DIR.LEFT;  },
     startRight: function() { this.right = true; this.dir = DIR.RIGHT; this.lastXDir = DIR.RIGHT; },
+    startSpace: function() { this.space = true; },
     stopUp:     function() { this.up    = false; this.dir = (this.dir == DIR.UP)    ? this.where() : this.dir; },
     stopDown:   function() { this.down  = false; this.dir = (this.dir == DIR.DOWN)  ? this.where() : this.dir; },
     stopLeft:   function() { this.left  = false; this.dir = (this.dir == DIR.LEFT)  ? this.where() : this.dir; },
     stopRight:  function() { this.right = false, this.dir = (this.dir == DIR.RIGHT) ? this.where() : this.dir; },
+    stopSpace:  function() { this.space = false; },
     where: function() {
       if (this.up)
         return DIR.UP;
