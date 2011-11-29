@@ -17,7 +17,6 @@ TODO
 FUTURE
 ======
 
- * rockford - catch diamonds as they fall past (fire button - act without moving)
  * menu screen
  * demo mode
  * sound fx
