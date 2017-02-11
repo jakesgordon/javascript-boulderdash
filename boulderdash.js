@@ -507,9 +507,9 @@ Boulderdash = function() {
     },
 
     domagic: function(p, to) {
+      this.clear(p);
       if (this.magic.time > 0) {
         this.magic.active = true;
-        this.clear(p);
         var p2 = new Point(p.x, p.y + 2);
         if (this.isempty(p2))
           this.set(p2, to);
