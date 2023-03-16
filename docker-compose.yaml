@@ -1,0 +1,36 @@
+#https://malura.de/blog/2019/01/17/meine-liebsten-docker-container.html
+version: "3"
+services:
+  boulderdashnginx:
+    restart: unless-stopped
+    build: .
+#    image: nginx:stable
+    ports:
+      - "7070:80"
+#    volumes:
+#      - /home/elbosso/comics/:/usr/share/nginx/html/comics
+#      - /home/elbosso/images/:/usr/share/nginx/html/images
+#      - ./conf/:/etc/nginx/
+    environment:
+      - TZ=Europe/Berlin
+    container_name: boulderdashnginx
+    hostname: boulderdashnginx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.boulderdashnginx-http.entrypoints=http"
+      - "traefik.http.routers.boulderdashnginx-http.rule=Host(`boulderdashnginx.docker.lab`)"
+      - "traefik.http.routers.boulderdashnginx-http.middlewares=boulderdashnginx-https"
+      - "traefik.http.services.boulderdashnginx-http.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.boulderdashnginx-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.boulderdashnginx.entrypoints=https"
+      - "traefik.http.routers.boulderdashnginx.rule=Host(`boulderdashnginx.docker.lab`)"
+      - "traefik.http.routers.boulderdashnginx.tls=true"
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+      
