@@ -3,9 +3,9 @@ Javascript BoulderDash
 
 An HTML5 Boulderdash Game
 
- * [play the game](http://codeincomplete.com/projects/boulderdash/)
+ * [play the game](https://jakesgordon.com/games/boulderdash/)
  * view the [source](https://github.com/jakesgordon/javascript-boulderdash)
- * read about [how it works](http://codeincomplete.com/posts/2011/10/25/javascript_boulderdash/)
+ * read about [how it works](https://jakesgordon.com/writing/javascript-boulderdash/)
 
 >> _*SUPPORTED BROWSERS*: Chrome, Firefox, Safari, Opera and IE9+_
 
